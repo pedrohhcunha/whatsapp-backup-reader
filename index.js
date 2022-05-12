@@ -32,9 +32,9 @@ async function writeCSV(listOfMessages) {
 }
 
 //Lê um arquivo TXT de backup do wtahtapp e transforma em arquivos JSON e CSV
-async function main() {
+async function main(pathName) {
     console.time("WhatsApp-Backup-Reader")
-    const text = await readFile('./inputs/whats.txt')
+    const text = await readFile(pathName)
     const lines = text.split('\n')
     const messagesList = lines.map(line => stringToObject(line)).filter(line => line)
     const writingResults = await Promise.all([
@@ -45,5 +45,8 @@ async function main() {
     return writingResults.every(result => result)
 }
 
+//Busca o pathname passado via cli
+const pathName = process.argv[2]
+
 //Executa o programa
-main()
+main(pathName)
