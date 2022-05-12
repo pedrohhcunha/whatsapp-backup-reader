@@ -1,7 +1,7 @@
 //Importa biblioteca para manipulação de arquivos
 const fs = require('fs')
 
-//lê u arquivo .txt e retorna o conteúdo em formato de string
+//lê o arquivo .txt e retorna o conteúdo em formato de string
 async function readFile(filePath) {
     return await fs.promises.readFile(filePath, 'utf8')
 }
