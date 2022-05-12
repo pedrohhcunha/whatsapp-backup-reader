@@ -19,19 +19,13 @@
 ## Install
 
 ```sh
-npm install
+npm install -g whatsapp-backup-reader
 ```
 
 ## Usage
 
 ```sh
-npm start <pathname>
-```
-
-## Run tests
-
-```sh
-npm run test
+whatsapp-backup-reader <pathname>
 ```
 
 ## Author
