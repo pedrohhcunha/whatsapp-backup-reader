@@ -1,9 +1,12 @@
+//Importa biblioteca para manipulação de arquivos
 const fs = require('fs')
 
+//lê u arquivo .txt e retorna o conteúdo em formato de string
 async function readFile(filePath) {
     return await fs.promises.readFile(filePath, 'utf8')
 }
 
+//Transforma uma string no padrão de backup do wtahtapp em um objeto
 function stringToObject(string) {
     let commaSepareted = string.split(',') // ['00/00/00', ' 22:43 - User: message']
     let date = commaSepareted[0] // 00/00/00
@@ -26,10 +29,12 @@ function stringToObject(string) {
     return null
 }
 
+//Escreve um arquivo JSON com a lista de mensagens
 async function writeJSON(listOfMessages) {
     return await fs.promises.writeFile(`./outputs/${new Date().valueOf()}.json`, JSON.stringify(listOfMessages))
 }
 
+//Escreve um arquivo CSV com a lista de mensagens
 async function writeCSV(listOfMessages) {
     let csv = 'date,time,username,message\n'
     listOfMessages.forEach(message => {
@@ -38,6 +43,7 @@ async function writeCSV(listOfMessages) {
     return await fs.promises.writeFile(`./outputs/${new Date().valueOf()}.csv`, csv)
 }
 
+//Lê um arquivo TXT de backup do wtahtapp e transforma em arquivos JSON e CSV
 async function main() {
     console.time("WhatsApp-Backup-Reader")
     const text = await readFile('./inputs/whats.txt')
@@ -50,4 +56,6 @@ async function main() {
     console.timeEnd("WhatsApp-Backup-Reader")
     return writingResults.every(result => result)
 }
+
+//Executa o programa
 main()
