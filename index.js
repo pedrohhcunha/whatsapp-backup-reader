@@ -21,7 +21,7 @@ function stringToObject(string) {
 
 //Escreve um arquivo JSON com a lista de mensagens
 async function writeJSON(listOfMessages) {
-    return await fs.promises.writeFile(`./outputs/${new Date().valueOf()}.json`, JSON.stringify(listOfMessages))
+    return await fs.promises.writeFile(`./${new Date().valueOf()}.json`, JSON.stringify(listOfMessages))
 }
 
 //Escreve um arquivo CSV com a lista de mensagens
@@ -30,7 +30,7 @@ async function writeCSV(listOfMessages) {
     listOfMessages.forEach(message => {
         csv += `${message.date},${message.time},${message.username},${message.message}\n`
     })
-    return await fs.promises.writeFile(`./outputs/${new Date().valueOf()}.csv`, csv)
+    return await fs.promises.writeFile(`./${new Date().valueOf()}.csv`, csv)
 }
 
 //Lê um arquivo TXT de backup do wtahtapp e transforma em arquivos JSON e CSV
@@ -47,7 +47,7 @@ async function main(pathName) {
     ])
     if(writingResults){
         console.timeEnd("WhatsApp-Backup-Reader")
-        return console.log("Arquivos gerados com sucesso! Verifique o diretório outputs!")
+        return console.log("Files successfully created! Check the root folder for outputs!")
     }
     console.log("Erro ao gerar arquivos!")
 }

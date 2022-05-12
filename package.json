@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-backup-reader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a automatic whatsapp backup reader than you can use to transform .txt whatsapp backup into .csv and .json files in any seconds",
   "main": "index.js",
   "scripts": {
