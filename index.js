@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 //Importa biblioteca para manipulação de arquivos
 const fs = require('fs')
 
