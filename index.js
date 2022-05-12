@@ -8,25 +8,13 @@ async function readFile(filePath) {
 
 //Transforma uma string no padrão de backup do wtahtapp em um objeto
 function stringToObject(string) {
-    let commaSepareted = string.split(',')
-    let date = commaSepareted[0]
-    if(commaSepareted.length >= 2){
+    const keys = ["date","time","username","message"]
+    let matches = string.match(/(\d+\/\d+\/\d+), (\d+:\d+) - (\w+): (.*)/i)?.slice(1)?.map((n,i)=>[keys[i],n])
 
-        let hyphenSepareted = commaSepareted.filter((_, index) => index >= 1).join().split('-')
-        let time = hyphenSepareted[0].trimEnd().trimStart()
-
-        let twoPointsSepareted = hyphenSepareted.filter((_, index) => index >= 1).join().split(':')
-        let username = twoPointsSepareted[0].trimEnd().trimStart()
-        let message = twoPointsSepareted.filter((_, index) => index >= 1).join()
-
-        return {
-            date,
-            time,
-            username,
-            message
-        }
-    }
-    return null
+    if(matches) 
+        return Object.fromEntries(matches)
+    else
+        return null
 }
 
 //Escreve um arquivo JSON com a lista de mensagens
